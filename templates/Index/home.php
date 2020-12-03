@@ -6,4 +6,4 @@
 <?= $this->element('banner')?>
 <?= $this->element('explore')?>
 <?= $this->element('main-menu')?>
-
+<?= $this->element('footer')?>

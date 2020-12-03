@@ -1,0 +1,23 @@
+
+    {% set pagename = submenu.name %}
+    <div class="col-12 city-menu-item-data">
+        <div class="btn back" data-controller='city' data-target='main-menu' data-from="main-menu" data-previous="">
+            back > {{submenu.name}}
+        </div>
+
+        <h1> {{submenu.display_name|raw}}</h1>
+        <div class="row mt-5">
+            {% include 'submenu.html' %}
+
+            <div class="col-8 " style="text-align: left; padding: 10px; padding-top: 0px">
+                <p>
+                    {{submenu.text|raw}}
+                </p>
+            </div>
+            <div class="col-2 related">
+                <h4> Related </h4>
+
+                {{submenu.related.text|raw }}
+            </div>
+        </div>
+    </div>

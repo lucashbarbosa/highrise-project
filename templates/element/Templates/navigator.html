@@ -1,0 +1,7 @@
+<div id='{{data.0.name}}' class='col-12 {{data.0.id}} {{submenu.name}} menu-page'
+    style="display: {{ loop.first ? 'block' : 'none !important' }}" data-menu-active = {{submenu.name}} >
+
+    {% set template_name = submenu.template_name ~ '.html' %}
+    {% include {template_name} %}
+
+</div>

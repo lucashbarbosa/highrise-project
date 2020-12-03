@@ -399,10 +399,18 @@ h1 {
     max-height: 200px;
   }
 
+
   /*
     we now overwrite the background-color for .submenu links only.
     CSS reads down the page, so code at the bottom will overwrite the code at the top.
   */
+
+
+
+  .submenu-opened{
+    display: block;
+    max-height: 200px;
+  }
 
   .submenu a {
     background-color: #999;
@@ -411,6 +419,10 @@ h1 {
   /* hover behaviour for links inside .submenu */
   .submenu a:hover {
     background-color: #666;
+  }
+
+  .submenu li{
+      padding-left: 5px;
   }
 
   /* this is the initial state of all submenus.

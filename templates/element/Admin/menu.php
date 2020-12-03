@@ -1,6 +1,7 @@
 <!-- Heading -->
 
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion <?= isset($loginPage) ? 'hidden' : '' ?>" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion <?= isset($loginPage) ? 'hidden' : '' ?>"
+    id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -24,22 +25,17 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
             aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
-            <span>data-sources</span>
+            <span>Pages</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Main Cities:</h6>
-                <a class="collapse-item" href="/admin/city/1">São Paulo</a>
-                <a class="collapse-item" href="cards.html">Lyon</a>
-                <a class="collapse-item" href="cards.html">London</a>
-            </div>
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Axes</h6>
-                <a class="collapse-item" href="buttons.html">Axe 1</a>
-            </div>
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Other Cities</h6>
-                <a class="collapse-item" href="buttons.html">City 1</a>
+                <h6 class="collapse-header">Menus</h6>
+                <?php foreach($data['menus'] as $menu) {
+
+                      $menu = (object) $menu;
+                    ?>
+                <a class="collapse-item" href="/admin/menus/edit/<?= $menu->id ?>"><?= $menu->display_name?></a>
+                <?php } ?>
             </div>
         </div>
     </li>
@@ -53,11 +49,13 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Utilities:</h6>
-                <a class="collapse-item" href="utilities-color.html">Colors</a>
-                <a class="collapse-item" href="utilities-border.html">Borders</a>
-                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
+                <h6 class="collapse-header">Templates:</h6>
+                <?php foreach($data['templates'] as $template) {
+                    $template = (object) $template;
+                ?>
+                <a class="collapse-item" href="/admin/city/<?= $template->id ?>"><?= $template->name?></a>
+                <?php } ?>
+
             </div>
         </div>
     </li>

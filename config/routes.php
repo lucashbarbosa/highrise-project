@@ -50,9 +50,9 @@ $routes->scope('/', function (RouteBuilder $builder) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, templates/Pages/home.php)...
      */
-    $builder->connect('/*', ['controller' => 'Pages', 'action' => 'display', 'home']);
-
-
+    $builder->connect('/', ['controller' => 'index', 'action' =>  'home']);
+    $builder->connect('/*', ['controller' => 'pages', 'action' =>  'page']);
+    // $builder->connect('/twig/index/*', ['controller' => 'twig' , 'action' => 'index']);
 
     $builder->connect('/admin', ['prefix' => 'admin', 'controller' => 'dashboard', 'action' => 'index']);
 
@@ -76,8 +76,8 @@ $routes->prefix('Admin', function ($routes) {
     // Todas as rotas aqui serão prefixadas com `/admin`. Também
     // será adicionado o elemento de rota `'prefix' => 'Admin'`,
     // que será necessário ao gerar URLs para essas rotas
-    $routes->connect('/city/:id', [ 'controller' => 'menus', 'action' => 'edit'])->setPatterns(['id' => '\d+'])
-    ->setPass(['id']);;
+    // $routes->connect('/city/:id', [ 'controller' => 'menus', 'action' => 'edit'])->setPatterns(['id' => '\d+'])
+    // ->setPass(['id']);;
 
     $routes->fallbacks(DashedRoute::class);
 });

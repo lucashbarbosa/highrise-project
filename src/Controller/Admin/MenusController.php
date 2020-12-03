@@ -5,36 +5,19 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Controller\Admin\MenuItensController;
-/**
- * Menus Controller
- *
- * @method \App\Model\Entity\Menu[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
+use Cake\Datasource\ConnectionManager;
 class MenusController extends AppController
 
 {
 
     public $itens;
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
     public function index()
     {
-        $menus = $this->paginate($this->Menus);
-
-        $this->set(compact('menus'));
+        echo "oi";
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Menu id.
-     * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+
     public function view($id = null)
     {
         $menu = $this->Menus->get($id, [
@@ -71,18 +54,11 @@ class MenusController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit($id)
     {
-        $menu = $this->Menus->get($id, [
-            'contain' => [],
-        ]);
-
-        $menuItens = new MenuItensController();
-
-        $this->itens = $menuItens->findByMenu();
-
-
-        $this->set(compact('menu'));
+        $conn  = ConnectionManager::get('default');
+        $submenus = $conn->execute("SELECT * FROM sub_menu WHERE menu_id = $id")->fetchAll('assoc');
+        debug($submenus);
     }
 
     /**

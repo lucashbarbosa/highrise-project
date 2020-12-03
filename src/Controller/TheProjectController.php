@@ -17,7 +17,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Datasource\Datasource;
-
+use Cake\Event\EventInterface;
 /**
  * Static content controller
  *
@@ -25,24 +25,26 @@ use Cake\Datasource\Datasource;
  *
  * @link https://book.cakephp.org/4/en/controllers/pages-controller.html
  */
-class PagesController extends AppController
+class TheProjectController extends AppController
 {
     public $layout;
     public $menu_id;
     public $name;
     public $content;
 
-    public function get(){
+    // public function beforeFilter(EventInterface $event)
+    // {
+    //     parent::beforeFilter($event);
 
 
+    // }
 
-    }
-
-    public function page(){
+    public function index(){
 
         $twig = new TwigController();
 
-        $template = $twig->index($this->getParsedURI()['controller']);
+        $template = $twig->index(strtolower($this->request->getParam('controller')));
+
 
         $this->set(compact('template'));
 
