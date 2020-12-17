@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-
+use Cake\Datasource\ConnectionManager;
 /**
  * Menu Entity
  *
@@ -14,7 +14,7 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\MenuIten[] $menu_itens
  */
-class Menu extends Entity
+class Menu
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -25,9 +25,40 @@ class Menu extends Entity
      *
      * @var array
      */
-    protected $_accessible = [
-        'name' => true,
-        'type' => true,
-        'menu_itens' => true,
-    ];
+
+
+    public $id;
+    public $name;
+    public $display_name;
+    public $sub_menus;
+
+    public function find(){
+        $conn  = ConnectionManager::get('default');
+        return $this->populate($conn->execute("SELECT * FROM menu WHERE name = '$this->name'")->fetchAll('assoc'));
+
+    }
+    public function findById($id){
+        $conn  = ConnectionManager::get('default');
+        return $this->populate($conn->execute("SELECT * FROM menu WHERE id = $id")->fetchAll('assoc'));
+
+    }
+
+
+    public function populate($menus){
+
+        $i = 0;
+        foreach($menus as $menu){
+
+
+            $menus[$i]['sub_menus'] =  (new SubMenu())->find($menu['id']);
+
+            $i++;
+        }
+
+
+        return $menus;
+
+    }
+
+
 }

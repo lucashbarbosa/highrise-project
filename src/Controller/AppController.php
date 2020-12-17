@@ -18,7 +18,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\EventInterface;
-
+use App\controller\Admin\DashboardController;
 /**
  * Application Controller
  *
@@ -43,10 +43,10 @@ class AppController extends Controller
         parent::initialize();
 
         $this->loadComponent('RequestHandler');
-        $this->loadComponent('Flash');   
+        $this->loadComponent('Flash');
         if($this->request->getParam('prefix') == 'Admin'){
-           
-        
+
+
         $this->loadComponent('Auth', [
             'loginRedirect' => [
                 'prefix' => 'Admin',
@@ -59,7 +59,7 @@ class AppController extends Controller
                 'action' => 'login'
             ]
         ]);
-    }   
+    }
 
 
 
@@ -77,9 +77,33 @@ class AppController extends Controller
     public function beforeRender(EventInterface $event)
     {
 
-
         if($this->request->getParam('prefix') == 'Admin'){
-            $this->viewBuilder()->setLayout('admin');
+
+            $this->admin();
+
+
         }
+
+
+    }
+
+    public function admin(){
+        $this->viewBuilder()->setLayout('admin');
+        $dash = new DashboardController();
+        $data = $dash->populateDashboard();
+
+
+        $this->set(compact('data'));
+
+
+
+    }
+
+    public function getParsedURI(){
+        $uri = explode("/" , $this->request->getServerParams()['REQUEST_URI']);
+        unset($uri[0]);
+        $parsed['controller'] = isset($uri[1]) ?  $uri[1] : null;
+        $parsed['action'] = isset($uri[1]) ?  $uri[1] : 'index';
+        return $parsed;
     }
 }

@@ -43,7 +43,7 @@ class MenusTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
-        $this->hasMany('MenuItens', [
+        $this->hasMany('MenusItens', [
             'foreignKey' => 'menu_id',
         ]);
     }

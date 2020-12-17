@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 use App\Controller\Admin\MenuItensController;
+use Cake\Datasource\ConnectionManager;
+use App\Model\Entity\Menu;
 /**
  * Menus Controller
  *
@@ -73,18 +75,34 @@ class MenusController extends AppController
      */
     public function edit($id = null)
     {
-        $menu = $this->Menus->get($id, [
-            'contain' => [],
-        ]);
+        $menu = new Menu();
 
-        $menuItens = new MenuItensController();
+        $menus = $menu->findById($id);
+        debug($menus);
 
-        $this->itens = $menuItens->findByMenu();
+        $this->set(compact('menus'));
 
-
-        $this->set(compact('menu'));
     }
 
+
+    public function save($id = ""){
+        $this->disableAutoRender();
+        $conn = ConnectionManager::get("default");
+
+        if($id != ""){
+
+            foreach($this->request->getData() as $data => $key){
+                $d[$data] = $key;
+            }
+
+
+            $conn->update('menu', $d);
+        }
+
+        $this->redirect("/admin/menus/edit/".$id);
+
+
+    }
     /**
      * Delete method
      *
