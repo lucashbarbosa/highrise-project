@@ -18046,3 +18046,33 @@ Stack Trace:
 Request URL: /the-project
 
 
+2020-12-17 03:36:25 Error: [Twig\Error\LoaderError] The "/webroot/Templates" directory does not exist ("/webroot/Templates"). in D:\projetos-pessoais\highrise-project\app\vendor\twig\twig\src\Loader\FilesystemLoader.php on line 92
+Stack Trace:
+- D:\projetos-pessoais\highrise-project\app\vendor\twig\twig\src\Loader\FilesystemLoader.php:78
+- D:\projetos-pessoais\highrise-project\app\vendor\twig\twig\src\Loader\FilesystemLoader.php:45
+- D:\projetos-pessoais\highrise-project\app\src\Controller\TwigController.php:33
+- D:\projetos-pessoais\highrise-project\app\src\Controller\TwigController.php:19
+- D:\projetos-pessoais\highrise-project\app\src\Controller\PagesController.php:45
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\cakephp\src\Controller\Controller.php:529
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\cakephp\src\Controller\ControllerFactory.php:79
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\cakephp\src\Http\BaseApplication.php:251
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\cakephp\src\Http\Runner.php:77
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\cakephp\src\Http\Middleware\BodyParserMiddleware.php:159
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\cakephp\src\Http\Runner.php:73
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\cakephp\src\Routing\Middleware\RoutingMiddleware.php:166
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\cakephp\src\Http\Runner.php:73
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\cakephp\src\Routing\Middleware\AssetMiddleware.php:68
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\cakephp\src\Http\Runner.php:73
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\cakephp\src\Error\Middleware\ErrorHandlerMiddleware.php:121
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\cakephp\src\Http\Runner.php:73
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\debug_kit\src\Middleware\DebugKitMiddleware.php:60
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\cakephp\src\Http\Runner.php:73
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\cakephp\src\Http\Runner.php:58
+- D:\projetos-pessoais\highrise-project\app\vendor\cakephp\cakephp\src\Http\Server.php:90
+- D:\projetos-pessoais\highrise-project\app\webroot\index.php:40
+- D:\projetos-pessoais\highrise-project\app\index.php:16
+
+Request URL: /publications
+Referer URL: http://localhost:3000/the-project
+
+

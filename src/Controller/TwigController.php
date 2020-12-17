@@ -30,7 +30,7 @@ class TwigController extends AppController
 
 
     public function fileRender($menu){
-        $loader = new FilesystemLoader('templates/element/Templates');
+        $loader = new FilesystemLoader('webroot/Templates');
         $twig = new Environment($loader, [ 'debug' => true]);
         $twig->addExtension(new \Twig\Extension\DebugExtension());
         return $twig->render('main.html', ['data' => $menu]);
