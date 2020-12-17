@@ -1,16 +1,18 @@
-<div class="col-2 ">
+<div class="col-2 " style="
+border-left: 15px solid;
+">
     <nav class="col-10 offset-1 navigation">
         <ul class="mainmenu">
             {% for submenu in data.0.sub_menus %}
 
             {% if submenu.tree == 0%}
             <li><a class="{{submenu.name}} {{ pagename == submenu.name ? 'active' : '' }} sub-menu-open"
-                    data-target="{{submenu.name}}">{{submenu.display_name}}</a>
+                    data-target="{{submenu.name}}">{{submenu.display_name|capitalize}}</a>
                 <ul class="submenu">
                     {% for tree in submenu.tree_menu %}
                     {% if tree.tree != 0  %}
                     <li><a class="{{submenu.name}} {{ pagename == tree.name ? 'active' : '' }} {{ pagename == tree.name ? 'active-sub-menu' : '' }} sub-menu-open submenu-opened tree"
-                        data-target="{{tree.name}}" data-open-submenu = "{{ pagename == tree.name ? 'active' : '' }}">{{tree.display_name}}</a></li>
+                        data-target="{{tree.name}}" data-open-submenu = "{{ pagename == tree.name ? 'active' : '' }}">{{tree.display_name|capitalize}}</a></li>
                         {% endif %}
                     {% endfor %}
                 </ul>

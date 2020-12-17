@@ -41,9 +41,10 @@ class PagesController extends AppController
     public function page(){
 
         $twig = new TwigController();
+        $controller = $this->getParsedURI()['controller'];
+        $template = $twig->index($controller);
 
-        $template = $twig->index($this->getParsedURI()['controller']);
-
+        $this->set(compact('controller'));
         $this->set(compact('template'));
 
     }

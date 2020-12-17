@@ -1,0 +1,69 @@
+
+    {% set pagename = submenu.name %}
+    <div class="col-12 city-menu-item-data">
+        {% include 'breadcrumbs.html' %}
+
+
+        <div class="row mt-5">
+
+            {% include 'submenu.html' %}
+            <div class="col-8 main-site-content">
+                <h2 class = "col-8 offset-4 only-text-title content-title mb-5"> {{submenu.title|raw}}</h2>
+                <div class="col-12">
+                    <div class = "row offset-1">
+                <div class="col-3 mb-3 mr-3 team-preview teams-img" style = "background-image: url('/webroot/img/contri3.jpg'); height: 200px">
+                    <div class = "teams-options hidden">
+                        <p>{{ 'Molle geoffrey'|upper}} </p>
+                    </div>
+                </div>
+                <div class="col-3 mb-3 mr-3 team-preview teams-img" style = "background-image: url(/webroot/img/contri2.jpg);">
+                    <div class = "teams-options hidden">
+                        <p>{{ 'Dorigno Louise'|upper}} </p>
+                    </div>
+                </div>
+                <div class="col-3 mb-3 mr-3 team-preview teams-img" style = "background-image: url('/webroot/img/contri4.jpg'); height: 200px">
+                    <div class = "teams-options hidden">
+                        <p>{{ 'Arroio Julio'|upper}} </p>
+                    </div>
+                </div>
+                <div class="col-3 mb-3 mr-3 team-preview teams-img" style = "background-image: url('/webroot/img/contri5.png'); height: 200px">
+                    <div class = "teams-options hidden">
+                        <p>{{ 'name'|upper}} </p>
+                    </div>
+                </div>
+                <div class="col-3 mb-3 mr-3 team-preview teams-img" style = "background-image: url('/webroot/img/contri6.jpg'); height: 200px">
+                    <div class = "teams-options hidden">
+                        <p>{{ 'name'|upper}} </p>
+                    </div>
+                </div>
+                <div class="col-3 mb-3 mr-3 team-preview teams-img" style = "background-image: url('/webroot/img/contri7.jpg'); height: 200px">
+                    <div class = "teams-options hidden">
+                        <p>{{ 'name'|upper}} </p>
+                    </div>
+                </div>
+                <div class="col-3 mb-3 mr-3 team-preview teams-img" style = "background-image: url('/webroot/img/contri8.jpg'); height: 200px">
+                    <div class = "teams-options hidden">
+                        <p>{{ 'name'|upper}} </p>
+                    </div>
+                </div>
+                <div class="col-3 mb-3 mr-3 team-preview teams-img" style = "background-image: url('/webroot/img/contri9.jpg'); height: 200px">
+                    <div class = "teams-options hidden">
+                        <p>{{ 'name'|upper}} </p>
+                    </div>
+                </div>
+                <div class="col-3 mb-3 mr-3 team-preview teams-img" style = "background-image: url('/webroot/img/contri1.jpg'); height: 200px">
+                    <div class = "teams-options hidden">
+                        <p>{{ 'name'|upper}} </p>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            </div>
+            <div class="col-2 related">
+                <h4> Related </h4>
+
+                {{submenu.related.text|raw }}
+            </div>
+        </div>
+    </div>

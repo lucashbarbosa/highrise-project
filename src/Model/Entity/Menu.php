@@ -37,7 +37,11 @@ class Menu
         return $this->populate($conn->execute("SELECT * FROM menu WHERE name = '$this->name'")->fetchAll('assoc'));
 
     }
+    public function findById($id){
+        $conn  = ConnectionManager::get('default');
+        return $this->populate($conn->execute("SELECT * FROM menu WHERE id = $id")->fetchAll('assoc'));
 
+    }
 
 
     public function populate($menus){

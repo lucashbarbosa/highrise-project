@@ -52,6 +52,7 @@ $(document).ready(function () {
 
 
 
+
     function contentManager() {
     }
 
@@ -60,4 +61,94 @@ $(document).ready(function () {
         $(".tab-pane").addClass('hidden')
         $("."+ $target).removeClass('hidden');
     })
+
+
+
+    //only-images scripts
+
+
+    //publication scripts
+
+    $(document).on('click', ".explore-publication-trigger", function(){
+        id = $(this).attr('data-publication-id');
+        subpage = $(this).attr('data-subpage-name');
+        console.log([id, subpage])
+        $("." + subpage + "-preview").addClass('hidden');
+        $(id).removeClass('hidden');
+
+    });
+
+
+    $(document).on('click', ".explore-publication-back-trigger", function(){
+        id = $(this).attr('data-publication-id');
+        subpage = $(this).attr('data-subpage-name');
+        console.log([id, subpage])
+        $("." + subpage + "-preview").removeClass('hidden');
+        $(id).addClass('hidden');
+
+    });
+
+
+
+    //cartographies _options
+
+    $(document).on('mouseenter', '.cartographies-img', function(){
+        $(this).find('.cartographies-options').removeClass('hidden');
+    });
+    $(document).on('mouseleave', '.cartographies-img', function(){
+        $(this).find('.cartographies-options').addClass('hidden');
+    });
+
+
+
+
+    $(document).on('click', ".explore-cartography-trigger", function(){
+        id = $(this).attr('data-cartography-id');
+        subpage = $(this).attr('data-subpage-name');
+        console.log([id, subpage])
+        $("." + subpage + "-preview").addClass('hidden');
+        $(id).removeClass('hidden');
+
+    });
+
+
+    $(document).on('click', ".explore-cartography-back-trigger", function(){
+        id = $(this).attr('data-cartography-id');
+        subpage = $(this).attr('data-subpage-name');
+        console.log([id, subpage])
+        $("." + subpage + "-preview").removeClass('hidden');
+        $(id).addClass('hidden');
+
+    });
+
+
+    //team scripts
+
+    $(document).on('click', ".explore-team-trigger", function(){
+        id = $(this).attr('data-team-id');
+        subpage = $(this).attr('data-subpage-name');
+        console.log([id, subpage])
+        $("." + subpage + "-preview").addClass('hidden');
+        $(id).removeClass('hidden');
+
+    });
+
+
+    $(document).on('click', ".explore-team-back-trigger", function(){
+        id = $(this).attr('data-cartography-id');
+        subpage = $(this).attr('data-subpage-name');
+        console.log([id, subpage])
+        $("." + subpage + "-preview").removeClass('hidden');
+        $(id).addClass('hidden');
+
+    });
+
+
+
+    $(document).on('mouseenter', '.teams-img', function(){
+        $(this).find('.teams-options').removeClass('hidden');
+    });
+    $(document).on('mouseleave', '.teams-img', function(){
+        $(this).find('.teams-options').addClass('hidden');
+    });
 });

@@ -10,16 +10,14 @@
 
             {% include 'submenu.html' %}
             <div class="col-8 main-site-content">
-                <h2 class = "col-8 offset-4 only-text-title content-title mb-5"> {{submenu.title|raw}}</h2>
+                <h1 class = "only-text-title content-title mb-5"> {{submenu.title|raw}}</h1>
                 <p class = "menu-text">
                     {{submenu.text|raw}}
                 </p>
 
             </div>
             <div class="col-2 related">
-                <h4> Related </h4>
 
-                {{submenu.related.text|raw }}
             </div>
         </div>
     </div>

@@ -43,7 +43,7 @@
                                 <span class="icon-wrap">
                                 <i class="fas fa-home"></i>
                                 </span>
-                                <h3>Living <br> in highrise</h3>
+                                <h3>Living <br> the highrise</h3>
                                 <a href="#" class="btn btn-outline-dark btn-sm mt-2">Explore</a>
                             </div> <!-- /.service -->
                         </div> <!-- /.col-md-4 -->
@@ -74,9 +74,10 @@
                                 <a href="#" class="btn btn-outline-dark btn-sm mt-2" >Explore</a>
                             </div> <!-- /.service -->
                         </div> <!-- /.col-md-4 -->
+
                     </div> <!-- /.row -->
                     <div class="more-services mt-5 ">
-                        <a  class="btn btn-lg btn-other-cities btn-block router-trigger" data-controller="city"
+                        <a  class="btn btn-lg btn-primary  blue btn-block router-trigger" data-controller="city"
                     data-from="main-menu" data-target='other-cities'>Other Cities</a>
                     </div>
                 </div>
