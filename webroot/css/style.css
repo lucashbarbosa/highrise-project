@@ -66,7 +66,16 @@ h1 {
     min-width: 100%;
     z-index: 1;
     /* background-color: rgba(196, 196, 196, 0.3); */
-    background-image: linear-gradient( to bottom, rgba(50, 146, 255, 0.6) , rgba(39, 39, 39, 0.1) );
+    background-image: linear-gradient( to bottom,   rgba(50, 146, 255, 0.4), rgba(39, 39, 39, 0.3) );
+
+}
+.banner-cover-text{
+    position: absolute;
+    min-height: 100%;
+    z-index: 1;
+    text-align: center;
+    /* background-color: rgba(196, 196, 196, 0.3); */
+    background-image: linear-gradient( to bottom, rgba(39, 39, 39, 0.3), rgba(39, 39, 39, 1)  );
 }
 
 #banner {
@@ -75,6 +84,19 @@ h1 {
     text-align: center;
     margin: 0;
     padding: 0;
+}
+
+#banner-text{
+
+    position: relative;
+    height: 500px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    text-shadow: 1px 2px 3px #666;
+    font-size: 18px
+
 }
 .img-scroll {
     width: 20%;
@@ -89,7 +111,9 @@ h1 {
 .main-city-menu {
     margin: 0;
     padding:0;
-    height: calc(100vh * 0.2)
+    height: calc(100vh * 0.2);
+    filter: grayscale(70%);
+    transition: filter 1s;
 }
 .main-city-cover {
     width: 100%;
@@ -101,6 +125,9 @@ h1 {
     transition: background-color 1s;
 }
 
+.main-site-content{
+    filter: grayscale(0%);
+}
 .main-city-cover p {
     position: absolute;
     font-size: 3em;
@@ -114,7 +141,39 @@ h1 {
 }
 
 
-.main-city-cover:hover {
+.main-city-menu:hover {
+    filter: grayscale(0%);
+    transition: filter 1s;
+}
+
+
+.main-axe-menu {
+    margin: 0;
+    padding:0;
+    height: calc(100vh * 0.2)
+}
+.main-axe-cover {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: absolute;
+    cursor: pointer;
+    transition: background-color 1s;
+}
+
+.main-axe-cover p {
+    position: absolute;
+    font-size: 1em;
+    color: #fff;
+    margin: 0;
+
+
+    /* transition: font-size 1s; */
+}
+
+
+.main-axe-cover:hover {
     background-color: rgba(0, 0, 0, 0.8);
     /* font-size: 1.2em; */
     transition: background-color 1s;
@@ -280,7 +339,7 @@ h1 {
     list-style: none !important
 }
 #nav > ul > li {
-    width: 8%;
+    width: 10%;
     height:  100% !important;
     float: left;
     list-style: none !important
@@ -403,7 +462,7 @@ h1 {
 
   .mainmenu li:hover .submenu {
     display: block;
-    max-height: 200px;
+    max-height: 300px;
   }
 
 
@@ -416,10 +475,11 @@ h1 {
 
   .submenu-opened{
     display: block;
-    max-height: 200px;
+    max-height: 300px;
   }
 
   .submenu a {
+      color:rgba(59, 59, 59, 0.5)
     /* background-color: #999; */
   }
 
@@ -429,7 +489,7 @@ h1 {
   }
 
   .submenu li{
-      padding-left: 5px;
+      padding-left: 8px;
   }
 
   /* this is the initial state of all submenus.
@@ -504,7 +564,7 @@ h1 {
 }
 
 .content-title{
-    text-align: right;
+    text-align: center;
     padding:10px;
 
 }
@@ -517,14 +577,11 @@ h1 {
     padding-top: 0px
 }
 
-.main-site-content p::first-letter{
-    font-size: 1.5em;
 
-    /* font-weight: bold; */
-}
 
 .breadcrumbs{
-    text-align:left
+    text-align: left !important;
+    text-transform: uppercase;
 }
 
 .related p{
@@ -597,5 +654,42 @@ h1 {
     height: 200px
 }
 
+
+
+.other-cities-banner{
+    height: calc(100vh * 0.29);
+
+    -webkit-box-shadow: -1px 0px 15px 7px #8E8E8E;
+    box-shadow: -1px 0px 15px 7px #8E8E8E;
+    transition: 0.3s
+}
+
+.other-cities-banner:hover{
+    -webkit-box-shadow: -1px 0px 20px 9px #8E8E8E;
+    box-shadow: -1px 0px 20px 9px #8E8E8E;
+    cursor: pointer;
+    color: #000 !important;
+    transition: 0.3s
+}
+.other-cities-banner:not(:last-child){
+    margin-right: calc(100vw / 4 * 0.29);
+
+}
+
+.themes-icon{
+    width: 150px;
+    height: 150px;
+    border: 1px solid #e9e9e9;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+.other-cities-banner p{
+    font-size: 1.4em;
+    text-align: center;
+    margin-top: 15px;
+    color: #8E8E8E;
+    text-transform: uppercase;
+    transition: 1s
+}
 
 
