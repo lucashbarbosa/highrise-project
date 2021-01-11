@@ -29,6 +29,9 @@ $(document).ready(function () {
         $("#banner").css({ 'height': $(window).height() }, function () {
             $(".explore").css({ 'postion': 'absolute' })
         });
+        $("#banner-text").css({ 'height': $(window).height() }, function () {
+            $(".explore").css({ 'postion': 'absolute' })
+        });
         $(".main-city-menu").css({ 'height': $(window).height() * 0.5 });
 
 
@@ -43,7 +46,8 @@ $(document).ready(function () {
     $(document).on('click', '.explore', function () {
 
 
-        $(window).scrollTo($(".menu"), 1200);
+        $(window).scrollTo($("#banner-text"), 1200);
+        $('#banner-video').get(0).pause();
 
     });
 

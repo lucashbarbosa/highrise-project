@@ -10,7 +10,8 @@
                 <li class="anchor-item"><a  class = "<?= $controller == 'case-studies' ? 'active' : ''?>" href ='case-studies'>Case Studies</a></li>
                 <li class="anchor-item"><a  class = "<?= $controller == 'mapping' ? 'active' : ''?>" href ='mapping'>Mapping</a></li>
                 <li class="anchor-item"><a  class = "<?= $controller == 'topics' ? 'active' : ''?>" href ='topics'>Topics</a></li>
-                <li class="anchor-item"><a  class = "<?= $controller == 'publications' ? 'active' : ''?>" href ='publications'>Publications</a></li>
+                <li class="anchor-item"><a  class = "<?= $controller == 'publications' ? 'active' : ''?>" href ='publications'>Products</a></li>
+
                 <li class="anchor-item"><a  class = "<?= $controller == 'search' ? 'active' : ''?>" href ='search'>Search <i class="fas fa-search"></i> </a></li>
 
             </ul>

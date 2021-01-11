@@ -1,4 +1,4 @@
-<div id='contact' class='col-12 contact-page'
+<!-- <div id='contact' class='col-12 contact-page'
     style="background-image: url('/webroot/img/research.jpg'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed; padding-top: 0">
     <div class="city-cover" style="padding-top: 50px">
 
@@ -27,4 +27,4 @@ box-shadow:         7px 7px 5px 0px rgba(163, 165, 168, 0.85);">
         </div>
     </div>
 
-</div>
+</div> -->
