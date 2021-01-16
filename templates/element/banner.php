@@ -60,6 +60,8 @@
             practitioners such as the Municipal Agencies of both cities), have been selected as the core case studies,
             because of their specific residential high-rise history. The project is thus both international (experts from
             abroad will be invited) and deeply locally rooted.» </p>
+            <h3><i class="fa fa-arrow-circle-down mt-5 continue-icon" aria-hidden="true"></i></h3>
+
     </div>
 
 
