@@ -74,12 +74,15 @@
     <!-- Bootstrap core JavaScript-->
     <script src="/webroot/vendor/jquery/jquery.min.js"></script>
     <script src="/webroot/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="/webroot/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="/webroot/js/sb-admin-2.min.js"></script>
+
+    <script src="/webroot/js/admin.js"></script>
 
     <!-- Page level plugins -->
     <!-- <script src="/webroot/vendor/chart.js/Chart.min.js"></script>

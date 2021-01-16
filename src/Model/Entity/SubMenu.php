@@ -34,13 +34,44 @@ class SubMenu
     public function find($menu_id)
     {
         $conn  = ConnectionManager::get('default');
-        return $this->populate($conn->execute("SELECT sm.id, sm.name, sm.display_name, sm.title, sm.menu_id, sm.order, sm.text, sm.tree, sm.has_tree, t.name as template_name FROM sub_menu sm INNER JOIN templates t ON sm.template_name = t.id WHERE menu_id = $menu_id ORDER BY sm.order ASC")->fetchAll('assoc'));
+        return $this->populate($conn->execute("SELECT sm.id,
+        sm.name,
+        sm.display_name,
+        p.title,
+        sm.menu_id,
+        sm.order,
+        p.text as text,
+        sm.tree,
+        sm.has_tree,
+        t.name as template_name
+        FROM sub_menu sm
+        INNER JOIN pages p
+        ON sm.page_id = p.id
+        INNER JOIN templates t
+        ON p.template_id = t.id
+        WHERE menu_id = $menu_id
+        ORDER BY sm.order ASC")->fetchAll('assoc'));
     }
 
     public function populateSubMenu($tree){
         $conn  = ConnectionManager::get('default');
 
-        return $this->populate($conn->execute("SELECT sm.id, sm.name, sm.display_name, sm.title, sm.menu_id, sm.order, sm.text, sm.tree, sm.has_tree, t.name as template_name FROM sub_menu sm INNER JOIN templates t ON sm.template_name = t.id WHERE tree = $tree")->fetchAll('assoc'));
+        return $this->populate($conn->execute("SELECT sm.id,
+        sm.name,
+        sm.display_name,
+        p.title,
+        sm.menu_id,
+        sm.order,
+        p.text as text,
+        sm.tree,
+        sm.has_tree,
+        t.name as template_name
+        FROM sub_menu sm
+        INNER JOIN pages p
+        ON sm.page_id = p.id
+        INNER JOIN templates t
+        ON p.template_id = t.id
+        WHERE tree = $tree")->fetchAll('assoc'));
     }
 
 

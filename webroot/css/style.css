@@ -73,9 +73,12 @@ h1 {
     position: absolute;
     min-height: 100%;
     z-index: 1;
-    text-align: center;
+    text-align: justify;
     /* background-color: rgba(196, 196, 196, 0.3); */
     background-image: linear-gradient( to bottom, rgba(39, 39, 39, 0.3), rgba(39, 39, 39, 1)  );
+}
+.banner-cover-text h3{
+    text-align: center;
 }
 
 #banner {

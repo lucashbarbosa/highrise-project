@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+
+
+    //   console.log(quill);
     contentManager()
     layoutManager()
     tabSystem();
@@ -58,6 +61,8 @@ $(document).ready(function () {
 
 
     function contentManager() {
+
+
     }
 
     $(".endpoint").click(function (){

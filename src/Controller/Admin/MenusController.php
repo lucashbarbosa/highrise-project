@@ -85,31 +85,31 @@ class MenusController extends AppController
     }
 
 
-    public function save($id = ""){
-        $this->disableAutoRender();
-        $conn = ConnectionManager::get("default");
+    // public function save($id = ""){
+    //     $this->disableAutoRender();
+    //     $conn = ConnectionManager::get("default");
 
-        if($id != ""){
+    //     if($id != ""){
 
-            foreach($this->request->getData() as $data => $key){
-                $d[$data] = $key;
-            }
-
-
-            $conn->update('menu', $d);
-        }
-
-        $this->redirect("/admin/menus/edit/".$id);
+    //         foreach($this->request->getData() as $data => $key){
+    //             $d[$data] = $key;
+    //         }
 
 
-    }
-    /**
-     * Delete method
-     *
-     * @param string|null $id Menu id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+    //         $conn->update('menu', $d);
+    //     }
+
+    //     $this->redirect("/admin/menus/edit/".$id);
+
+
+    // }
+    // /**
+    //  * Delete method
+    //  *
+    //  * @param string|null $id Menu id.
+    //  * @return \Cake\Http\Response|null|void Redirects to index.
+    //  * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+    //  */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);

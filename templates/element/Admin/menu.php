@@ -39,27 +39,12 @@
             </div>
         </div>
     </li>
-
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSubmenus" aria-expanded="true"
-            aria-controls="collapseSubmenus">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>List Pages</span>
-        </a>
-        <div id="collapseSubmenus" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Menus</h6>
-
-                <?php foreach($data['submenus'] as $submenu) {
-
-                      $submenu = (object) $submenu;
-                    ?>
-                <a class="collapse-item" href="/admin/menus/edit/<?= $submenu->id ?>"><?= $submenu->display_name?></a>
-                <?php } ?>
-            </div>
-        </div>
+        <a class="nav-link" href="/admin/pages/index">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Pages</span></a>
     </li>
-    <!-- Nav Item - Utilities Collapse Menu -->
+
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">

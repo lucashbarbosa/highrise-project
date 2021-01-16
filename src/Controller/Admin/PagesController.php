@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 
+use Cake\Datasource\ConnectionManager;
 /**
  * Pages Controller
  *
@@ -12,6 +13,18 @@ use App\Controller\AppController;
  */
 class PagesController extends AppController
 {
+
+
+
+     public static function findAllPages(){
+
+        $conn = ConnectionManager::get('default');
+
+        $pages = $conn->execute("SELECT p.*, t.name as template_name, t.id as template_id FROM pages p INNER JOIN templates t ON t.id = p.template_id")->fetchAll('assoc');
+
+        return $pages;
+
+    }
     /**
      * Index method
      *
@@ -19,7 +32,7 @@ class PagesController extends AppController
      */
     public function index()
     {
-        $pages = $this->paginate($this->Pages);
+        $pages = PagesController::findAllPages();
 
         $this->set(compact('pages'));
     }
@@ -47,17 +60,24 @@ class PagesController extends AppController
      */
     public function add()
     {
-        $page = $this->Pages->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $page = $this->Pages->patchEntity($page, $this->request->getData());
-            if ($this->Pages->save($page)) {
-                $this->Flash->success(__('The page has been saved.'));
+        $conn = ConnectionManager::get('default');
+        if($this->request->isPost()){
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The page could not be saved. Please, try again.'));
+            $pages = $this->request->getData();
+            $conn->insert('pages', $pages);
+
+            echo "ok";
+
+
+        }else{
+
+
+            $templates = $conn->execute("SELECT * FROM templates")->fetchAll('assoc');
+
+            $this->set(compact('templates'));
         }
-        $this->set(compact('page'));
+
+
     }
 
     /**
@@ -69,19 +89,18 @@ class PagesController extends AppController
      */
     public function edit($id = null)
     {
-        $page = $this->Pages->get($id, [
-            'contain' => [],
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $page = $this->Pages->patchEntity($page, $this->request->getData());
-            if ($this->Pages->save($page)) {
-                $this->Flash->success(__('The page has been saved.'));
+        $conn = ConnectionManager::get('default');
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The page could not be saved. Please, try again.'));
-        }
-        $this->set(compact('page'));
+        $page = $conn->execute("SELECT p.*, t.name as template_name, t.id as template_id FROM pages p INNER JOIN templates t ON t.id = p.template_id WHERE p.id = $id")->fetch('assoc');
+
+        $fields = $conn->execute("SELECT f.id, f.field, f.data_type
+        FROM templates_fields tf
+        INNER JOIN fields f ON tf.field_id = f.id
+        WHERE template_id = " . $page['template_id'])->fetchAll('assoc');
+
+        $formdata = ["page" => $page, "fields" => $fields];
+
+        $this->set(compact('formdata'));
     }
 
     /**

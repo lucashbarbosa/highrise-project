@@ -1,36 +1,39 @@
 <?php
-/**
- * @var \App\View\AppView $this
- * @var \Cake\Datasource\EntityInterface $page
- */
+debug($formdata);
+
+$fields = $formdata['fields'];
+$page = $formdata['page'];
+
 ?>
-<div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $page->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $page->id), 'class' => 'side-nav-item']
-            ) ?>
-            <?= $this->Html->link(__('List Pages'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column-responsive column-80">
-        <div class="pages form content">
-            <?= $this->Form->create($page) ?>
-            <fieldset>
-                <legend><?= __('Edit Page') ?></legend>
-                <?php
-                    echo $this->Form->control('name');
-                    echo $this->Form->control('type');
-                    echo $this->Form->control('title');
-                    echo $this->Form->control('content');
-                    echo $this->Form->control('layout_id');
-                ?>
-            </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
-            <?= $this->Form->end() ?>
-        </div>
+
+<h3> Pages - Edit </h3>
+
+
+<h2 class="mt-5 mb-5"><?= $page['name'] ?></h2>
+<form method="POST">
+    <div class="form-row">
+
+        <?php foreach ($fields as $field) {
+            $field = (object)$field;
+        ?>
+            <div class="form-group col-md-12">
+                <label for="inputEmail4"><?= $field->field ?></label>
+                <?php if ($field->data_type == "text") { ?>
+                    <input type="text" name="<?= $field->field ?>" class="form-control" value="<?= $page[$field->field] ?>" id="inputEmail4" placeholder="<?= $field->field ?>">
+                <?php } else if ($field->data_type == "textarea") { ?>
+
+                    <div id="editor" data-field = "teste">
+                        <?= $page[$field->field] ?>
+                    </div>
+
+                    <input type="hidden" class = "editor-content" name = "<?= $field->field?> ">
+
+                <?php } ?>
+            </div>
+        <?php } ?>
+
+
+        <button class="btn btn-primary" type="submit">Save</button>
     </div>
-</div>
+
+</form>

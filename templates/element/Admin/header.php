@@ -14,3 +14,9 @@
   <link href="/webroot/css/sb-admin-2.min.css" rel="stylesheet">
   <link href="/webroot/css/style.css" rel="stylesheet">
 
+
+
+<!-- Theme included stylesheets -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+

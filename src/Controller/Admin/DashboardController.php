@@ -29,9 +29,8 @@ class DashboardController extends AppController
     $conn  = ConnectionManager::get('default');
     $menus = $conn->execute("SELECT * FROM menu")->fetchAll('assoc');
     $templates = $conn->execute("SELECT * FROM templates")->fetchAll('assoc');
-    $submenus = $conn->execute("SELECT * FROM sub_menu")->fetchAll('assoc');
 
-    return ["menus" => $menus, "templates" => $templates, "submenus" => $submenus];
+    return ["menus" => $menus, "templates" => $templates];
 
     // $this->set(compact('menus'));
 
