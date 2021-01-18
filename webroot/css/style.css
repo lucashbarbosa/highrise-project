@@ -47,7 +47,8 @@ h1 {
     margin: 0;
     padding: 0;
     padding-top: calc(100vh * 0.1);
-    height:  calc(100vh);
+    min-height:  calc(100vh - (100vh/4));
+    height: auto;
 }
 
 .contact-page{
@@ -73,11 +74,26 @@ h1 {
     position: absolute;
     min-height: 100%;
     z-index: 1;
-    text-align: center;
+    text-align: justify;
     /* background-color: rgba(196, 196, 196, 0.3); */
     background-image: linear-gradient( to bottom, rgba(39, 39, 39, 0.3), rgba(39, 39, 39, 1)  );
 }
 
+.banner-cover-text h3{
+    text-align: center;
+
+
+}
+.continue-icon{
+    font-size: 1em;
+    transition: font-size 1s;
+}
+
+.continue-icon:hover{
+    font-size: 1.8em;
+    transition: 1s;
+    cursor:pointer;
+}
 #banner {
     position: relative;
     height: 500px;
@@ -556,7 +572,10 @@ h1 {
 
 
 .related{
-    padding: 50px
+    padding: 50px;
+    border-left: 1px solid gray;
+    margin-bottom: 5px;
+    margin-top: 10px
 }
 
 .related a{
@@ -693,3 +712,6 @@ h1 {
 }
 
 
+.footer{
+    border-top: 1px solid #e9e9e9;
+}
