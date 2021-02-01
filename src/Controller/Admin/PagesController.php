@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
-
+use App\Controller\Admin\only_text_dto;
+use App\Controller\Admin\only_images_dto;
 use Cake\Datasource\ConnectionManager;
+
 /**
  * Pages Controller
  *
@@ -13,6 +15,9 @@ use Cake\Datasource\ConnectionManager;
  */
 class PagesController extends AppController
 {
+
+
+    public $documentTypeDto;
 
 
 
@@ -66,9 +71,7 @@ class PagesController extends AppController
             $pages = $this->request->getData();
             $conn->insert('pages', $pages);
 
-            echo "ok";
-
-
+            $this->redirect("/admin/pages/index");
         }else{
 
 
@@ -87,20 +90,21 @@ class PagesController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit($documentType = false, $id = false)
     {
-        $conn = ConnectionManager::get('default');
+        $dto = $this->choose($documentType);
 
-        $page = $conn->execute("SELECT p.*, t.name as template_name, t.id as template_id FROM pages p INNER JOIN templates t ON t.id = p.template_id WHERE p.id = $id")->fetch('assoc');
+        if($this->request->isPost()){
 
-        $fields = $conn->execute("SELECT f.id, f.field, f.data_type
-        FROM templates_fields tf
-        INNER JOIN fields f ON tf.field_id = f.id
-        WHERE template_id = " . $page['template_id'])->fetchAll('assoc');
+            $data = $this->request->getData();
 
-        $formdata = ["page" => $page, "fields" => $fields];
+            $dto->update($data, $id);
+        }
 
-        $this->set(compact('formdata'));
+
+        $page = $dto->findOne($id);
+        $this->set(compact('page'));
+
     }
 
     /**
@@ -122,4 +126,35 @@ class PagesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+    function upload(){
+        $this->disableAutoRender();
+
+        $images = new ImagesController();
+
+        $image = $this->request->getUploadedFiles();
+        debug($images->upload($_FILES['image']));
+    }
+
+    function pageImageSave($image, $page){
+        $conn = ConnectionManager::get('default');
+        $conn->execute("INSERT INTO pages_images (page_id, image_id) VALUES('$page', '$image')");
+
+    }
+
+    function choose($pageName){
+
+        str_replace("-", "_", $pageName);
+        switch ($pageName) {
+
+            case 'only_text':
+                return new only_text_dto();
+            case 'only_images':
+                return new onlyImagesController();
+
+        }
+
+    }
+
 }

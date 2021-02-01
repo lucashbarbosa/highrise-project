@@ -25,9 +25,9 @@
 
 
 </div>
-<div id="banner-text" class='col-12' style="height: 900px; ">
+<div id="banner-text" class='col-12'>
     <div class="banner-cover-text">
-    <div class = "col-8 offset-2" style = "margin-top: 200px">
+    <div class = "col-8 offset-2" >
     <h3>HIGH RISE LIVING AND THE INCLUSIVE CITY </h3>
         <p> Exerpts from the project’s presentation on the french blog, to be re-written:
 

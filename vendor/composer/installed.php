@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'aa6aa945d6d69fcdbf411060839350f2a2972499',
+    'reference' => '28f26b9f152e09b57cc7958b9830952abca21d8a',
     'name' => 'cakephp/app',
   ),
   'versions' => 
@@ -27,7 +27,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'aa6aa945d6d69fcdbf411060839350f2a2972499',
+      'reference' => '28f26b9f152e09b57cc7958b9830952abca21d8a',
     ),
     'cakephp/bake' => 
     array (
@@ -914,6 +914,15 @@
       array (
       ),
       'reference' => 'b02fa41f3783a2616eccef7b92fbc2343ffed737',
+    ),
+    'verot/class.upload.php' => 
+    array (
+      'pretty_version' => '2.1.0',
+      'version' => '2.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '4d9aae875245948d21e42ade332fb45f897f28bb',
     ),
     'webmozart/assert' => 
     array (

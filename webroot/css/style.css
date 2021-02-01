@@ -70,7 +70,8 @@ h1 {
 
 }
 .banner-cover-text{
-    position: absolute;
+    /* position: absolute; */
+    padding-top: calc(100vh/10);
     min-height: 100%;
     z-index: 1;
     text-align: justify;
@@ -92,7 +93,7 @@ h1 {
 #banner-text{
 
     position: relative;
-    height: 500px;
+    height: auto;
     text-align: center;
     margin: 0;
     padding: 0;
@@ -102,8 +103,8 @@ h1 {
 
 }
 .img-scroll {
-    width: 20%;
-    /* margin-left: 40%; */
+    width: calc(100vw/5);
+    min-width: 200px;
     margin-top: 0;
     z-index: 50;
 }
@@ -252,7 +253,8 @@ h1 {
     /* position: absolute; */
     /* z-index:10000; */
     /* margin-top: 300px; */
-    width: 140px;
+    max-width: 140px;
+    width: calc(100vw/5);
     /* height: 60px; */
 
     background-color: #000;
@@ -696,3 +698,26 @@ h1 {
 }
 
 
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+/*
+  .button-up {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+  } */
+
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }

@@ -10,7 +10,8 @@
         "cakephp/migrations": "^3.0",
         "cakephp/plugin-installer": "^1.2",
         "mobiledetect/mobiledetectlib": "^2.8",
-        "twig/twig": "^3.0"
+        "twig/twig": "^3.0",
+        "verot/class.upload.php": "^2.1"
     },
     "require-dev": {
         "cakephp/bake": "^2.0.3",

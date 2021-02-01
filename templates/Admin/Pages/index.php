@@ -10,7 +10,7 @@
     <tr>
       <th scope="col">id</th>
       <th scope="col">Name</th>
-      <th scope="col">Title</th>
+
       <th scope="col">Template Name</th>
       <th scope="col"></th>
       <th scope="col"></th>
@@ -25,10 +25,10 @@
     <tr>
       <th><?= $page->id?></th>
       <td><?= $page->name?></td>
-      <td><?= $page->title?></td>
+
       <td><?= $page->template_name?></td>
       <td>View</td>
-      <td><a href = "/admin/pages/edit/<?=$page->id?>">Edit</td>
+      <td><a href = "/admin/pages/edit/<?=$page->template_name ."/". $page->id?>">Edit</td>
     </tr>
         <?php } ?>
   </tbody>

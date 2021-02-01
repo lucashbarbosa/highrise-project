@@ -81,7 +81,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/webroot/js/sb-admin-2.min.js"></script>
-
+    <script src="/webroot/vendor/nic/nicEdit.js"></script>
     <script src="/webroot/js/admin.js"></script>
 
     <!-- Page level plugins -->
