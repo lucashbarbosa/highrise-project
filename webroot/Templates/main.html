@@ -1,9 +1,15 @@
 
 
 
-{% for submenu in data.0.sub_menus %}
+
+
+{% for submenu in data.submenus %}
 
     {% include 'navigator.html' %}
+    {% for submenu in submenu.tree %}
+    {% set sub = true %}
+        {% include 'navigator.html' %}
+    {% endfor %}
 
 {% endfor %}
 

@@ -34,7 +34,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; The Highrise Project 2021</span>
                     </div>
                 </div>
             </footer>
@@ -81,6 +81,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/webroot/js/sb-admin-2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"> </script>
     <script src="/webroot/vendor/nic/nicEdit.js"></script>
     <script src="/webroot/js/admin.js"></script>
 

@@ -1,0 +1,83 @@
+{% set pagename = submenu.name %}
+
+
+<div class="col-12 city-menu-item-data">
+    {% include 'breadcrumbs.html' %}
+
+
+    <div class="row mt-5">
+
+        {% include 'submenu.html' %}
+
+        <link href="/webroot/css/gallery.css" rel="stylesheet">
+
+        <div class="col-8 main-site-content ">
+            <h2 class="only-text-title content-title mb-5"> {{submenu.page.title|raw}}</h2>
+            <p>{{submenu.page.before_text|raw}}</p>
+            <div class="d-none d-md-block">
+                {% set index = 0 %}
+                {% for submenu in submenu.page.template_info.specific %}
+
+                {% if index == 0 %}
+                <div class="container mt-5">
+                    {% endif %}
+                    <div class="card open-custom-modal" data-target=".modal-{{submenu.id}}">
+                        <img class="card" src="/webroot/uploaded_files/{{submenu.url}}">
+                        <div class="card__head">{{submenu.title}}</div>
+                    </div>
+                    {% if index == 3 %}
+                </div>
+
+                {% set index = 0 %}
+                {% else %}
+                {% set index = index + 1 %}
+                {% endif %}
+                {% endfor %}
+                <p>{{submenu.page.after_text|raw}}</p>
+            </div>
+            <!-- mobile gallery -->
+            <div class="d-block d-md-none">
+                {% set index = 0 %}
+                {% for submenu in submenu.page.template_info.specific %}
+                <div class="container mt-5">
+
+                    <div class="card open-custom-modal" data-target=".modal-{{submenu.id}}">
+                        <img class="card" src="/webroot/uploaded_files/{{submenu.url}}">
+                        <div class="card__head">{{submenu.title}}</div>
+                    </div>
+
+                </div>
+                {% endfor %}
+                <p>{{submenu.page.after_text|raw}}</p>
+            </div>
+        </div>
+        <div class="col-2 related">
+            <h4 class="mb-3"> Related Contents </h4>
+
+            {{submenu.related.text|raw }}
+        </div>
+    </div>
+
+    {% set index = 0 %}
+    {% for submenu in submenu.page.template_info.specific %}
+
+    <div class="custom-modal col-12 index-{{index}} hidden modal-{{submenu.id}}">
+        <div class="col-6 offset-3" style="text-align: right"><button class="btn btn-primary close-modal">Close <i
+                    class="fa fa-times"></i></button></div>
+        <div class="col-12 ">
+            <img class="w-50" src="/webroot/uploaded_files/{{submenu.url}}">
+        </div>
+        <div class="control">
+            {% set next = index + 1 %}
+            {% set previous = index - 1 %}
+            <button class="btn btn-primary previous-button {{index == 0 ? " disabled": "" }} " data-previous = "
+                .index-{{previous}}">
+                << Previous</button>
+                    <button class="btn btn-primary next-button" data-next=".index-{{next}}">Next >></button>
+        </div>
+    </div>
+    {% set index = index + 1 %}
+    {% endfor %}
+
+
+</div>

@@ -15,7 +15,7 @@ class TwigController extends AppController
         $menu->name = $name;
 
         $menu = $menu->find();
-        $this->debugIt($menu);
+        //  $this->debugIt($menu);
         $template = $this->fileRender($menu);
         // $this->set(compact('template'));
         return $template;

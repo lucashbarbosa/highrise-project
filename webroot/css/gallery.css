@@ -16,11 +16,12 @@
 .container .card {
     flex: 1;
     transition: all 1s ease-in-out;
-    height: 60vmin;
+    height: 30vmin;
     position: relative;
 }
 .container .card .card__head {
-    color: black;
+    color: #fff;
+    text-transform: capitalize;
     background: rgba(255, 30, 173, 0.75);
     padding: 0.5em;
     transform-origin: 0% 0%;

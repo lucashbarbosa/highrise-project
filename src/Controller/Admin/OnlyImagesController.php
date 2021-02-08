@@ -21,15 +21,37 @@ class OnlyImagesController extends AppController{
         $data = (object) $data;
         $conn  = ConnectionManager::get('default');
         try{
-             $conn->execute("UPDATE only_image_table SET text = '$data->text', title = '$data->title' WHERE id = $id");
+             $conn->execute("UPDATE only_images_table SET text = '$data->text', title = '$data->title' WHERE id = $id");
         }catch(\PDOException $ex){
             return $ex->getMessage();
 
         }
 
-
-
     }
+
+
+    function getSpecificInformation($template_info){
+        $conn = ConnectionManager::get('default');
+
+        return $conn->execute("SELECT i.*, pim.title FROM pages_images pim
+        INNER JOIN images i
+        ON pim.image_id = i.id
+        WHERE pim.page_id = ". $template_info['id'])->fetchAll('assoc');
+    }
+
+
+    function  verifyOrCreateTemplateContent($page):void{
+        $conn = ConnectionManager::get('default');
+        $template = $conn->execute("SELECT * FROM pages WHERE id = $page ")->fetch('assoc');
+
+            if($template['template_content_id'] == null){
+                $conn->execute("INSERT INTO only_images_table (title) VALUES(null)");
+
+                $id = $conn->execute("SELECT id FROM only_images_table ORDER BY id DESC")->fetch('assoc')['id'];
+
+                $conn->execute("UPDATE pages SET template_content_id = $id WHERE id = $page");
+            }
+   }
 
     public function findOne($id){
 
@@ -38,7 +60,7 @@ class OnlyImagesController extends AppController{
         SELECT p.name as page_name, p.id as page_id, p.template_content_id, tab.*, t.name as template_name FROM pages p
             INNER JOIN templates t
             ON p.template_id = t.id
-            LEFT JOIN only_image_table tab
+            LEFT JOIN only_images_table tab
             ON p.template_content_id = tab.id
             WHERE p.id =" . $id
         )->fetch('assoc');
@@ -62,28 +84,36 @@ class OnlyImagesController extends AppController{
     }
 
     function createTemplateContentTable($page){
-        debug($page);
+
         $conn  = ConnectionManager::get('default');
-        $conn->execute("INSERT INTO only_image_table (text) VALUES (null)");
-        $page['template_content_id'] = $conn->execute("SELECT id FROM only_image_table ORDER BY id DESC LIMIT 1")->fetch('assoc')['id'];
+        $conn->execute("INSERT INTO only_images_table (text) VALUES (null)");
+        $page['template_content_id'] = $conn->execute("SELECT id FROM only_images_table ORDER BY id DESC LIMIT 1")->fetch('assoc')['id'];
         $conn->execute("UPDATE pages SET template_content_id = ". $page['template_content_id'] );
 
         return $page;
     }
 
-    public function save($page_id){
+    public function save($page_id, $template_id){
         $this->disableAutoRender();
+        $title = $this->request->getData()['title'];
+        $before = $this->request->getData()['before-text'];
+        $after = $this->request->getData()['after-text'];
 
-        $data = $this->request->getData();
+        $conn  = ConnectionManager::get('default');
+        $conn->execute("UPDATE only_images_table SET title = '$title', before_text = '$before', after_text = '$after' WHERE id = $template_id ");
 
 
 
         $images = new ImagesController();
         $file = $_FILES['image'];
-        $uploaded = $images->upload($file);
+        $imageTitle = $this->request->getData()['image-title'];
+        if($file['error'] == 0){
+            $uploaded = $images->upload($file);
+            $page = new PagesController();
+            $page->pageImageSave($uploaded[0]['id'], $page_id, $imageTitle);
+        }
 
-        $page = new PagesController();
-        $page->pageImageSave($uploaded[0]['id'], $page_id);
+
 
         $this->redirect("admin/pages/edit/only_images/". $page_id);
     }

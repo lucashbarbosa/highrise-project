@@ -9,14 +9,42 @@ $(document).ready(function () {
 
 
 
+    $(".open-custom-modal").click(function () {
+
+        $(".custom-modal").addClass("hidden");
+        target = $(this).attr("data-target");
+        $(target).removeClass("hidden");
+
+    })
+
+    $(".previous-button").click(function () {
+
+        target = $(this).attr("data-previous");
+        $(".custom-modal").addClass("hidden");
+        $(target).removeClass("hidden");
+    })
+
+
+    $(".close-modal").click(function () {
+        $(".custom-modal").addClass("hidden");
+    })
+    $(".next-button").click(function () {
+        target = $(this).attr("data-next");
+        $(".custom-modal").addClass("hidden");
+        $(target).removeClass("hidden");
+    })
 
     $(document).on("click", ".sub-menu-open", function(){
 
         $(".menu-page").css({'display': 'none'});
+        target = $(this).attr("data-target");
+        if($(this).hasClass("tree")){
+            $("."+target).parent().parent().addClass("submenu-opened");
+        }else{
+            $("."+target).parent().parent().removeClass("submenu-opened");
+        }
 
-
-
-        $("."+ $(this).attr('data-target')).css({'display': 'block'})
+        $("."+ target).css({'display': 'block'})
 
     })
 

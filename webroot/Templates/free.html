@@ -1,0 +1,26 @@
+
+
+
+    {% set pagename = submenu.name %}
+    <div class="col-12 city-menu-item-data">
+        {% include 'breadcrumbs.html' %}
+
+
+        <div class="row mt-5">
+
+            {% include 'submenu.html' %}
+            <div class="col-8 main-site-content">
+
+                <h2 class = "content-title mb-5"> {{submenu.page.title|raw}}</h2>
+                <p class = "menu-text">
+                    {{submenu.page.html|raw}}
+                </p>
+
+            </div>
+            <div class="col-2 related">
+                <h4> Related </h4>
+
+                {{submenu.related.text|raw }}
+            </div>
+        </div>
+    </div>

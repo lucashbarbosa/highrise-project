@@ -467,7 +467,7 @@ h1 {
 
   .mainmenu li:hover .submenu {
     display: block;
-    max-height: 300px;
+    height: auto;
   }
 
 
@@ -479,8 +479,8 @@ h1 {
 
 
   .submenu-opened{
-    display: block;
-    max-height: 300px;
+    display: block !important;
+    height: auto !important;
   }
 
   .submenu a {
@@ -502,7 +502,7 @@ h1 {
   */
   .submenu {
     overflow: hidden;
-    max-height: 0;
+    height: 0px;
     -webkit-transition: all 0.5s ease-out;
   }
 
@@ -721,3 +721,41 @@ h1 {
     top: 0;
     opacity: 0;
   }
+
+
+  .folder-level{
+      margin-left: 40px;
+  }
+  .folder-item{
+      text-transform: capitalize;
+      margin-bottom: 0
+  }
+  .menu-trigger{
+      text-decoration: underline;
+      color: blue;
+      cursor: pointer;
+  }
+
+
+
+  .custom-modal{
+      width: 100vw;
+      min-height: 100vh;
+      height: auto;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding-top:100px;
+      text-align: center;
+      position:fixed;
+      background-color:rgba(0, 0, 0, 0.8)
+  }
+.open-submenu{
+    max-height: 200px !important;
+    height: auto !important;
+}

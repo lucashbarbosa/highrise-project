@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller\Admin;
@@ -21,14 +22,14 @@ class PagesController extends AppController
 
 
 
-     public static function findAllPages(){
+    public static function findAllPages()
+    {
 
         $conn = ConnectionManager::get('default');
 
         $pages = $conn->execute("SELECT p.*, t.name as template_name, t.id as template_id FROM pages p INNER JOIN templates t ON t.id = p.template_id")->fetchAll('assoc');
 
         return $pages;
-
     }
     /**
      * Index method
@@ -66,21 +67,20 @@ class PagesController extends AppController
     public function add()
     {
         $conn = ConnectionManager::get('default');
-        if($this->request->isPost()){
+        if ($this->request->isPost()) {
 
             $pages = $this->request->getData();
             $conn->insert('pages', $pages);
 
+
             $this->redirect("/admin/pages/index");
-        }else{
+        } else {
 
 
             $templates = $conn->execute("SELECT * FROM templates")->fetchAll('assoc');
 
             $this->set(compact('templates'));
         }
-
-
     }
 
     /**
@@ -90,22 +90,21 @@ class PagesController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($documentType = false, $id = false)
+    public function edit($documentType = false, $page_id = false, $template_id = false)
     {
         $dto = $this->choose($documentType);
 
-        if($this->request->isPost()){
-
+        if ($this->request->isPost()) {
             $data = $this->request->getData();
+            $dto->update($data, $template_id);
 
-            $dto->update($data, $id);
         }
 
-
-        $page = $dto->findOne($id);
+        $this->request->isPost() ? "" : $dto->verifyOrCreateTemplateContent($page_id);
+        $page = $dto->findOne($page_id);
         $this->set(compact('page'));
-
     }
+
 
     /**
      * Delete method
@@ -128,7 +127,8 @@ class PagesController extends AppController
     }
 
 
-    function upload(){
+    function upload()
+    {
         $this->disableAutoRender();
 
         $images = new ImagesController();
@@ -137,24 +137,26 @@ class PagesController extends AppController
         debug($images->upload($_FILES['image']));
     }
 
-    function pageImageSave($image, $page){
+    function pageImageSave($image, $page, $title)
+    {
         $conn = ConnectionManager::get('default');
-        $conn->execute("INSERT INTO pages_images (page_id, image_id) VALUES('$page', '$image')");
-
+        $conn->execute("INSERT INTO pages_images (page_id, image_id, title) VALUES('$page', '$image', '$title')");
     }
 
-    function choose($pageName){
+    function choose($templateName)
+    {
 
-        str_replace("-", "_", $pageName);
-        switch ($pageName) {
+        str_replace("-", "_", $templateName);
+        switch ($templateName) {
 
             case 'only_text':
-                return new only_text_dto();
+                return new OnlyTextController();
             case 'only_images':
-                return new onlyImagesController();
-
+                return new OnlyImagesController();
+            case 'free':
+                return new FreeController();
+            case 'mosaic':
+                return new MosaicController();
         }
-
     }
-
 }

@@ -31,7 +31,7 @@
     </li>
 
     <!-- Nav Item - Alerts -->
-    <li class="nav-item dropdown no-arrow mx-1">
+    <li class="nav-item dropdown no-arrow mx-1 hidden">
       <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-bell fa-fw"></i>
         <!-- Counter - Alerts -->
@@ -80,7 +80,7 @@
     </li>
 
     <!-- Nav Item - Messages -->
-    <li class="nav-item dropdown no-arrow mx-1">
+    <li class="nav-item dropdown no-arrow mx-1 hidden">
       <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-envelope fa-fw"></i>
         <!-- Counter - Messages -->
@@ -135,10 +135,10 @@
       </div>
     </li>
 
-    <div class="topbar-divider d-none d-sm-block"></div>
+    <div class="topbar-divider d-none d-sm-block hidden"></div>
 
     <!-- Nav Item - User Information -->
-    <li class="nav-item dropdown no-arrow">
+    <li class="nav-item dropdown no-arrow hidden">
       <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
         <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">

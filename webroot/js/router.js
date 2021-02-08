@@ -86,10 +86,7 @@ $(document).ready(function () {
     $(document).on('click', ".router-trigger", function () {
         route = $(this);
 
-        // path = window.location.pathname.split("/")
-        // setStorage('controller', path[1]);
-        // setStorage('action', path[2]);
-        // console.log(path)
+
 
         navigator(route.attr('data-controller'), route.attr('data-target'), "", "", route.attr('data-from'))
     });

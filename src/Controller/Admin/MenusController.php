@@ -25,7 +25,9 @@ class MenusController extends AppController
      */
     public function index()
     {
-        $menus = $this->paginate($this->Menus);
+        $conn = ConnectionManager::get("default");
+        $menus = $conn->execute("SELECT * FROM menu")->fetchAll('assoc');
+
 
         $this->set(compact('menus'));
     }
@@ -75,12 +77,25 @@ class MenusController extends AppController
      */
     public function edit($id = null)
     {
+        $conn = ConnectionManager::get("default");
         $menu = new Menu();
 
-        $menus = $menu->findById($id);
-        debug($menus);
+        $menuDto = new MenusDtoController();
+
+        $menus = $menuDto->build($id);
+
+
+
+        // $menus = $menu->findById($id);
+
+        $pages = $conn->execute("SELECT * FROM pages")->fetchAll('assoc');
+
+
+
+
 
         $this->set(compact('menus'));
+        $this->set(compact('pages'));
 
     }
 
