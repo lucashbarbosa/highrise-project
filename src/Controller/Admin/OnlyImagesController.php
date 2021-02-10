@@ -33,10 +33,13 @@ class OnlyImagesController extends AppController{
     function getSpecificInformation($template_info){
         $conn = ConnectionManager::get('default');
 
-        return $conn->execute("SELECT i.*, pim.title FROM pages_images pim
+        $specific = $conn->execute("SELECT i.*, pim.title FROM pages_images pim
         INNER JOIN images i
         ON pim.image_id = i.id
         WHERE pim.page_id = ". $template_info['id'])->fetchAll('assoc');
+
+
+        return $specific;
     }
 
 

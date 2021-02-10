@@ -6,7 +6,19 @@ $(document).ready(function () {
         height: '500'
     });
     // bkLib.onDomLoaded(function () { nicEditors.allTextAreas() });
+    // $(document).on('mouseenter', '.mosaic-img', function(){
+    //     $(this).find('.mosaic-options').removeClass('hidden');
+    // });
+    // $(document).on('mouseleave', '.mosaic-img', function(){
+    //     $(this).find('.mosaic-options').addClass('hidden');
+    // });
 
+
+    $(".mosaic-preview").click(function(){
+        target = $(this).attr('data-target');
+        $(".mosaic-preview").addClass('hidden');
+        $("."+target).removeClass('hidden');
+    })
 
     $(".remove-image").click(function () {
         image = $(this).attr("data-image");
@@ -15,6 +27,11 @@ $(document).ready(function () {
 
         removeImage(image, page);
     })
+
+
+        $(".show-mosaic-form").click(function () {
+            $(".mosaic-form").toggleClass('hidden')
+        })
 
     function removeImage(image, page) {
 

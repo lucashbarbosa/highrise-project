@@ -100,6 +100,7 @@ class PagesController extends AppController
 
         }
 
+
         $this->request->isPost() ? "" : $dto->verifyOrCreateTemplateContent($page_id);
         $page = $dto->findOne($page_id);
         $this->set(compact('page'));

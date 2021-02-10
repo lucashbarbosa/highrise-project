@@ -32,17 +32,24 @@ class MosaicController extends AppController
         }
     }
 
-    public function save($page_id, $template_id)
+
+    public function addNewItem($mosaicId)
+    {
+        $title = $this->request->getData()['title'];
+        $text = $this->request->getData()['text'];
+        $coverText = $this->request->getData()['cover_text'];
+    }
+
+    public function save($page_id, $template_id, $new = false)
     {
         $this->disableAutoRender();
 
         $title = $this->request->getData()['title'];
         $text = $this->request->getData()['text'];
+        $mosaic_id = isset($this->request->getData()['mosaic-id']) ? $this->request->getData()['mosaic-id'] : false ;
         $coverText = $this->request->getData()['cover_text'];
-        // $coverPhotoUrl = $this->request->getData()['cover_photo_url'];
         $conn  = ConnectionManager::get('default');
-        $conn->execute("UPDATE mosaic_table
-        SET title = '$title'  WHERE id = $template_id ");
+
 
 
 
@@ -62,28 +69,35 @@ class MosaicController extends AppController
             ON i.id = pim.image_id
             WHERE page_id = $page_id AND image_id = $imageId ORDER BY pim.id DESC LIMIT 1")->fetch('assoc')['url'];
 
-            $this->updateMosaicPhoto($url, $template_id);
 
 
+            if (!$new) {
+                $this->updateMosaicPhoto($url, $mosaic_id);
+            }
         }
-
-        $conn->execute("UPDATE mosaic
+        if ($new) {
+            $conn->execute("INSERT INTO mosaic (title, text, cover_text, mosaic_table_id, cover_photo_url) VALUES ('$title', '$text', '$coverText', '$template_id', '$url' )");
+        } else {
+            $conn->execute("UPDATE mosaic
                         SET
                         title = '$title',
                         text = '$text',
                         cover_text = '$coverText'
-                        WHERE mosaic_table_id = $template_id ");
-
+                        WHERE id = $mosaic_id");
+        }
         $this->redirect("admin/pages/edit/mosaic/" . $page_id);
     }
 
-    function updateMosaicPhoto($url, $template_id){
+
+
+    function updateMosaicPhoto($url, $mosaic_id)
+    {
+
         $conn  = ConnectionManager::get('default');
         $conn->execute("UPDATE mosaic
         SET
-        cover_photo_url = '$url';
-        WHERE mosaic_table_id = $template_id ");
-
+        cover_photo_url = '$url'
+        WHERE id = $mosaic_id ");
     }
 
 
@@ -110,7 +124,7 @@ class MosaicController extends AppController
         $conn  = ConnectionManager::get('default');
         $page =  $conn->execute(
             "
-        SELECT m.*, p.name as page_name, p.id as page_id, p.template_content_id, tab.*, t.name as template_name FROM pages p
+        SELECT  p.name as page_name, p.id as page_id, p.template_content_id, tab.*, t.name as template_name FROM pages p
         INNER JOIN templates t
         ON p.template_id = t.id
         LEFT JOIN mosaic_table tab
@@ -120,22 +134,38 @@ class MosaicController extends AppController
         WHERE p.id =" . $id
         )->fetch('assoc');
 
-        $images = $conn->execute(
-
-            "SELECT * FROM images im
-        LEFT JOIN pages_images pim
-        ON pim.image_id = im.id
-        "
-        )->fetchAll('assoc');
-
-        $page['images'] = $images;
 
 
-        if (is_null($page['template_content_id'])) {
-            return $this->createTemplateContentTable($page);
-        } else {
-            return $page;
+
+        if($page){
+            if (is_null($page['template_content_id'])) {
+                $mosaic = $this->createTemplateContentTable($page);
+            } else {
+                $mosaic =  $page;
+            }
+
+            $mosaic['itens'] = $conn->execute("SELECT * FROM mosaic WHERE mosaic_table_id = " . $mosaic['template_content_id'])->fetchAll('assoc');
+        }else{
+            $mosaic["template_name"] = "mosaic" ;
+            $mosaic['$page_id'] = $id;
+            $mosaic = $this->createTemplateContentTable($id);
         }
+
+
+
+
+
+
+        // $images = $conn->execute(
+        // "SELECT * FROM images im
+        // LEFT JOIN pages_images pim
+        // ON pim.image_id = im.id
+        // "
+        // )->fetchAll('assoc');
+
+        // $page['images'] = $images;
+
+        return $mosaic;
     }
 
     function createTemplateContentTable($page)
@@ -145,6 +175,8 @@ class MosaicController extends AppController
         $conn->execute("INSERT INTO mosaic_table (text) VALUES (null)");
         $page['template_content_id'] = $conn->execute("SELECT id FROM mosaic_table ORDER BY id DESC LIMIT 1")->fetch('assoc')['id'];
         $conn->execute("UPDATE pages SET template_content_id = " . $page['template_content_id']);
+        $conn->execute("INSERT INTO mosaic (mosaic_table_id)  VALUES( " . $page['template_content_id']) . ")";
+        $page['item'] = $conn->execute("SELECT  FROM mosaic ORDER BY id DESC LIMIT 1")->fetch('assoc');
 
         return $page;
     }
@@ -153,6 +185,7 @@ class MosaicController extends AppController
 
     function getSpecificInformation($template_info)
     {
-        return null;
+        $conn  = ConnectionManager::get('default');
+        return $conn->execute("SELECT * FROM mosaic WHERE mosaic_table_id = " . $template_info['template_content_id'])->fetchAll('assoc');
     }
 }

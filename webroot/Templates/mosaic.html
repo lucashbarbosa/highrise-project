@@ -1,0 +1,117 @@
+{% set pagename = submenu.name %}
+<div class="col-12 city-menu-item-data">
+    {% include 'breadcrumbs.html' %}
+
+
+    <div class="row mt-5">
+
+        {% include 'submenu.html' %}
+        <div class="col-10" style=>
+
+
+            <div class="col-12">
+                <div class="row">
+
+                    {% for submenu in submenu.page.template_info.specific %}
+                    <div class="col-3 mb-3 mr-3 cartography-preview cartographies-img explore-cartography-trigger"
+                        data-subpage-name="cartography" data-cartography-id="#cartography-{{submenu.id}}"
+                        style="background-image: url('/webroot/uploaded_files/{{submenu.cover_photo_url}}'); height: 400px; padding: 0">
+                        <div class="cartographies-options hidden">
+                            <p>{{submenu.cover_text}}</p>
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <div id="cartography-{{submenu.id}}" class="col-12 cartographies-full hidden">
+                        <div class="btn btn-secondary btn-sm explore-cartography-back-trigger mb-3"
+                            data-subpage-name="cartography" data-cartography-id="#cartography-1"> <i
+                                class="fa fa-long-arrow-alt-left"></i> Back </div>
+                        <div class="row">
+                            <div class="col-9">
+                                <div class="col-12">
+                                    <h3> {{submenu.cover_text}}</h3>
+
+                                </div>
+                                <div class="shown-image">
+                                    <img class="col-8 offset-2"
+                                        src="/webroot/uploaded_files/{{submenu.cover_photo_url}}">
+                                </div>
+                                <div class="thumb-images mt-3">
+                                    <div style="text-align: center; display: inline-flex">
+                                        <div style="width:25%" class=""><img class="col-12"
+                                                src="/webroot/img/cartografias.png">
+                                        </div>
+                                        <div style="width:25%" class=""><img class="col-12"
+                                                src="/webroot/img/cartografias.png">
+                                        </div>
+                                        <div style="width:25%" class=""><img class="col-12"
+                                                src="/webroot/img/cartografias.png">
+                                        </div>
+                                        <div style="width:25%" class=""><img class="col-12"
+                                                src="/webroot/img/cartografias.png">
+                                        </div>
+                                        <div style="width:25%" class=""><img class="col-12"
+                                                src="/webroot/img/cartografias.png">
+                                        </div>
+                                        <div style="width:25%" class=""><img class="col-12"
+                                                src="/webroot/img/cartografias.png">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-5">
+                                        {{submenu.text|raw}}
+                                    </div>
+
+                                    <div class="col-4 offset-4 mt-3">
+
+                                        <div class="col-12 offset-1 btn btn-black btn-sm mb-2"><i
+                                                class="fa fa-download"></i>&nbsp
+                                            Download Images</div>
+                                        <div class="col-12 offset-1 btn btn-black btn-sm mb-2"><i
+                                                class="fa fa-download"></i>&nbsp
+                                            Download Full Text</div>
+                                        <div class="col-12 offset-1 btn btn-black btn-sm mb-2"><i
+                                                class="fa fa-download"></i>&nbsp
+                                            Download Slide Show</div>
+                                        <div class="col-12 offset-1 btn btn-black btn-sm mb-2"><i
+                                                class="fa fa-download"></i>&nbsp
+                                            Download Narratives</div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-2 related">
+                                <h4> Related </h4>
+                                <div class="col-2 related" style="border-left: 1px solid gray">
+                                    <h4> Related </h4>
+                                    <br>
+                                    <h5> Toolbox </h5>
+                                    <p> IDH </p>
+                                    <p>HIGHRISE BUILDING</p>
+                                    <p>VERTICALIZATION</p>
+                                    <br>
+                                    <h5> Topics </h5>
+                                    <p>PRODUCING IN THE VERTICAL CITY</p>
+                                    <p>MOBILITATE</p>
+                                    <p>SOCIAL PRACTIES</p>
+                                    <br>
+                                    <h5> Articles </h5>
+                                    <p>TEXT</p>
+                                    <p>TEXT</p>
+                                    <p>TEXT</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>

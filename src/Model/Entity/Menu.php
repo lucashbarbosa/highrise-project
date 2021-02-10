@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Model\Entity;
@@ -7,6 +8,7 @@ use Cake\ORM\Entity;
 use Cake\Datasource\ConnectionManager;
 use App\controller\Admin\MenusDtoController;
 use App\controller\Admin\PagesDtoController;
+
 /**
  * Menu Entity
  *
@@ -34,44 +36,50 @@ class Menu
     public $display_name;
     public $sub_menus;
 
-    public function find(){
+    public function find()
+    {
         $conn  = ConnectionManager::get('default');
 
         $id = $this->getMenuId();
+
 
         $menusDto = new MenusDtoController();
 
         $menus = $menusDto->build($id);
 
-        foreach ($menus->submenus as $submenu){
+
+        foreach ($menus->submenus as $submenu) {
 
             $pagesDto = new PagesDtoController();
 
             $submenu->page = $pagesDto->getDeepPage($submenu->page_id);
 
-            foreach ($submenu->tree as $tree){
+            foreach ($submenu->tree as $tree) {
                 $tree->page = $pagesDto->getDeepPage($tree->page_id);
             }
+
+
             $submenu->page['template_info']['specific'] = $pagesDto->getSpecificInformation($submenu->page['template_info']);
         }
 
-
-
-
-
+        // debug($menus);
         return $menus;
-
-
     }
 
-    function getMenuId(){
+    function getMenuId()
+    {
 
         $conn  = ConnectionManager::get('default');
-        return $conn->execute("SELECT id FROM menu WHERE name = '$this->name'")->fetch('assoc')['id'];
+        $id =  $conn->execute("SELECT id FROM menu WHERE name = '$this->name'")->fetch('assoc');
+        if (isset($id['id'])) {
+            return $id['id'];
+        }
 
+        return false;
     }
 
-    public function findById($id){
+    public function findById($id)
+    {
         $conn  = ConnectionManager::get('default');
         return $conn->execute("
             SELECT sm.name as submenu_name, sm.order as submenu_order, sm.tree as submenu_tree, sm.has_tree as submenu_hastree,  m.name as menu_name, m.display_name as menu_display_name, m.id as menu_id, m.order as menu_order FROM menu_sub_menus msm
@@ -83,15 +91,14 @@ class Menu
     }
 
 
-    public function populate($menus){
+    public function populate($menus)
+    {
 
         $i = 0;
-        foreach($menus as $menu){
+        foreach ($menus as $menu) {
             $menus[$i]['sub_menus'] =  (new SubMenu())->find($menu['menu_id']);
             $i++;
         }
         return $menus;
     }
-
-
 }
